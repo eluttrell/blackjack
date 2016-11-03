@@ -49,8 +49,6 @@ html {
 }
 
 #dealer-hand>img, #player-hand>img {
-    margin-top: 5px;
-    margin-left: 5px;
 }
 
 #homeButton {
@@ -64,4 +62,9 @@ td {
 #placeBets {
     float: right;
     margin-top: -80px;
+}
+
+.card {
+  height: 95%;
+  padding: 5px;
 }

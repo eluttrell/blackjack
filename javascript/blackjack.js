@@ -113,7 +113,7 @@ $(function() {
             } else if (i === 1) {
               // Render card back until dealer's turn
               dealerCards.push(deck.pop());
-              $('#dealer-hand').append('<img src="images/backOfCard.png" width="130px" height="190px">');
+              $('#dealer-hand').append('<img class="card" src="images/backOfCard.png">');
             }
             playerCards.push(deck.pop());
             $('#player-hand').append(getCardImageUrl(playerCards[i]));
@@ -289,7 +289,7 @@ function getCardImageUrl(card) {
         name = card.point;
     }
 
-    return '<img src="images/' + name + '_of_' + card.suit + '.png" width="130px" height="190px">';
+    return '<img class="card" src="images/' + name + '_of_' + card.suit + '.png">';
 
 }
 
@@ -297,6 +297,7 @@ function getCardImageUrl(card) {
 
 function calculatePoints(cards) {
     var sum = 0;
+    cards = cards.slice(0);
     cards.sort(function(b, a) {
         return a.point - b.point;
     });
