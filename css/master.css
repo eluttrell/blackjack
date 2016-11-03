@@ -1,0 +1,51 @@
+body {
+    background: green;
+    height: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+#table {
+    position: relative;
+    display: inline-block;
+    width: 90%;
+    height: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    background: black;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+#dealer-hand, #player-hand {
+    height: 200px;
+    width: auto;
+    background: gray;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.buttons {
+    text-align: center;
+    font-size: 10em;
+    margin-top: -110px;
+}
+
+.message {
+    margin-top: -50px;
+}
+
+#dealer-hand>img, #player-hand>img {
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+td {
+    border: 1px solid white;
+}
