@@ -17,7 +17,19 @@ $(function() {
     var draw = 0;
     var wallet = 500;
     var curBet = 0;
+    var hotness = 0;
 
+    // Hotdeck function
+    function hotdeck(cards) {
+      for (var k = 0; k < cards.length; k++) {
+        var hotcard = cards[k].point;
+        if (hotcard > 2 && hotcard < 7) {
+          hotness += 1;
+        } else {
+          hotness -= 1;
+        }
+      }
+    }
 
     // deck = fakeDeck; //Strictly for testing purposes
 
@@ -70,14 +82,16 @@ $(function() {
       }
     }
 
-    // Start Button
-    // $('#start-button').click(function() {
-    //
-    // }
-
     // Deal Button
     $('#deal-button').click(function() {
-        console.log(curBet);
+
+        hotdeck(playerCards);
+        hotdeck(dealerCards);
+        console.log(hotness);
+
+        // if (deck.length < 1) {
+        //   deck = newDeck();
+        // }
 
         // Disable betting
         $('.bet').attr('disabled',true);
@@ -105,19 +119,25 @@ $(function() {
         $('#dealer-hand').contents().remove();
         $('#player-hand').contents().remove();
 
-        for (var i = 0; i < 2; i++) {
-            // Render card images on page and store card values in dealerCards and playerCards variables
-            if (i === 0) {
-              dealerCards.push(deck.pop());
-              $('#dealer-hand').append(getCardImageUrl(dealerCards[i]));
-            } else if (i === 1) {
-              // Render card back until dealer's turn
-              dealerCards.push(deck.pop());
-              $('#dealer-hand').append('<img class="card" src="images/backOfCard.png">');
-            }
-            playerCards.push(deck.pop());
-            $('#player-hand').append(getCardImageUrl(playerCards[i]));
-        }
+        // Render card images on page and store card values in dealerCards and playerCards variables
+        deal(dealerCards,'#dealer-hand');
+        deal(playerCards,'#player-hand');
+        dealerCards.push(deck.pop());
+        $('#dealer-hand').append('<img class="card" src="images/backOfCard.png">');
+        deal(playerCards,'#player-hand');
+
+        // for (var i = 0; i < 2; i++) {
+        //     if (i === 0) {
+        //       dealerCards.push(deck.pop());
+        //       $('#dealer-hand').append(getCardImageUrl(dealerCards[i]));
+        //     } else if (i === 1) {
+        //       // Render card back until dealer's turn
+        //       dealerCards.push(deck.pop());
+        //       $('#dealer-hand').append('<img class="card" src="images/backOfCard.png">');
+        //     }
+        //     playerCards.push(deck.pop());
+        //     $('#player-hand').append(getCardImageUrl(playerCards[i]));
+        // }
 
         // Calculate and display Player points
         $('#player-points').text(calculatePoints(playerCards));
@@ -140,11 +160,17 @@ $(function() {
     // Hit button
     $('#hit-button').click(function() {
 
-        // Push new cards to players hand
-        playerCards.push(deck.pop());
+      // if (deck.length < 1) {
+      //   deck = newDeck();
+      // }
+      // Deal a card to the player
+      deal(playerCards,'#player-hand');
 
-        // Render new card images to screen
-        $('#player-hand').append(getCardImageUrl(playerCards[playerCards.length - 1]));
+        // // Push new cards to players hand
+        // playerCards.push(deck.pop());
+        //
+        // // Render new card images to screen
+        // $('#player-hand').append(getCardImageUrl(playerCards[playerCards.length - 1]));
 
         // Update player points
         $('#player-points').text(calculatePoints(playerCards));
@@ -159,6 +185,11 @@ $(function() {
             $('#stand-button').attr('disabled', true);
             dealerWin += 1;
             $('.dealerw').text(dealerWin);
+            wallet -= curBet;
+            curBet = 0;
+            $('.wallet').text(wallet);
+            $('#betAmount').text(curBet);
+            $('.bet').attr('disabled',false);
         } else if (x === 'blackjack') {
             $('#hit-button').attr('disabled', true);
             $('#stand-button').attr('disabled', false);
@@ -259,17 +290,14 @@ $(function() {
         }
     }
 
-    // Betting function
-    // var curWallet = function(curBet) {
-    //   if (calculatePoints(dealerCards) > calculatePoints(playerCards)) {
-    //     return wallet - curbet;
-    //   } else if (calculatePoints(playerCards) > calculatePoints(dealerCards)) {
-    //     return wallet + curbet;
-    //   } else {
-    //     return wallet;
-    //   }
-    // };
+    //Deal function
+    function deal(person,selector){
+      var card = deck.pop();
+      person.push(card);
+      $(selector).append(getCardImageUrl(card));
+    }
 });
+//-----------------------------------
 
 //----------------------------------
 
