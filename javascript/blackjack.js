@@ -21,7 +21,7 @@ $(function() {
 
     // deck = fakeDeck; //Strictly for testing purposes
 
-    // $('#deal-button').attr('disabled', true);
+    $('#deal-button').attr('disabled', true);
     $('.dealerw').text(dealerWin);
     $('.draw').text(draw);
     $('.playerw').text(playerWin);
@@ -53,6 +53,7 @@ $(function() {
         $('#betAmount').text(curBet);
         $('.bet').attr('disabled',true);
       }
+      $('#deal-button').attr('disabled', false);
     });
 
     // Stop betting once approaching wallet value
