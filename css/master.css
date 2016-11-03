@@ -1,6 +1,7 @@
 body {
     background: green;
     height: 100%;
+    padding: 50px 100px 0 100px;
 }
 
 html {
@@ -10,15 +11,15 @@ html {
 #table {
     position: relative;
     display: inline-block;
-    width: 90%;
-    height: 90%;
+    width: 80%;
+    height: 80%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
     background: black;
-    padding: 15px;
-    border-radius: 10px;
+    padding: 50px 180px 110px 180px;
+    border-radius: 500px;
 }
 
 #dealer-hand, #player-hand {
@@ -35,10 +36,16 @@ html {
     text-align: center;
     font-size: 10em;
     margin-top: -110px;
+    margin-left: -50px;
 }
 
 .message {
-    margin-top: -50px;
+    margin-top: -65px;
+    line-height: normal;
+}
+
+.wins {
+  margin-top: -10px
 }
 
 #dealer-hand>img, #player-hand>img {
@@ -46,6 +53,15 @@ html {
     margin-left: 5px;
 }
 
+#homeButton {
+  color: white;
+}
+
 td {
     border: 1px solid white;
+}
+
+#placeBets {
+    float: right;
+    margin-top: -80px;
 }
