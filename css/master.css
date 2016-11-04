@@ -1,7 +1,7 @@
 body {
     background: green;
     height: 100%;
-    padding: 50px 100px 0 100px;
+    padding: 0 150px 0 150px;
 }
 
 html {
@@ -18,7 +18,9 @@ html {
     transform: translate(-50%, -50%);
     color: white;
     background: black;
-    padding: 50px 180px 110px 180px;
+    padding: 35px 180px 92px 180px;
+    margin-top: -8px;
+    margin-bottom: -8px;
     border-radius: 500px;
 }
 
@@ -67,4 +69,9 @@ td {
 .card {
   height: 95%;
   padding: 5px;
+}
+
+.bet {
+  margin-left: -20px;
+  margin-right: 15px;
 }
